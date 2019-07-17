@@ -1,8 +1,8 @@
 package com.sirikyebrian.androidservices;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,5 +22,11 @@ public class MainActivity extends AppCompatActivity {
     public void stopService(View view) {
         Intent intent = new Intent(this, MyStartedService.class);
         stopService(intent);
+    }
+
+    public void startIntentService(View view) {
+        Intent intent = new Intent(this, MyIntentService.class);
+        intent.putExtra(MyIntentService.EXTRA_SLEEP_TIME, 10);
+        startService(intent);
     }
 }
