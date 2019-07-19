@@ -11,10 +11,14 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SecondActivity"
+        <activity
+            android:name=".activities.MessengerActivity"
+            android:label="@string/ipc"
+            android:parentActivityName=".activities.MainActivity" />
+        <activity android:name=".activities.BoundActivity"
             android:label="@string/bound_service"
-            android:parentActivityName=".MainActivity"></activity>
-        <activity android:name=".MainActivity">
+            android:parentActivityName=".activities.MainActivity"></activity>
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +26,12 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyStartedService" />
-        <service android:name=".MyIntentService" />
-        <service android:name=".MyBoundService" />
+        <service android:name=".services.MyStartedService" />
+        <service android:name=".services.MyIntentService" />
+        <service android:name=".services.MyBoundService" />
+        <service
+            android:name=".services.MyMessengerService"
+            android:process=":my_own_process" />
 
         <meta-data
             android:name="preloaded_fonts"

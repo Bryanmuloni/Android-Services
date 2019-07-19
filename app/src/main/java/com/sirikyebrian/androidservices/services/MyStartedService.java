@@ -1,4 +1,4 @@
-package com.sirikyebrian.androidservices;
+package com.sirikyebrian.androidservices.services;
 
 import android.app.Service;
 import android.content.Intent;

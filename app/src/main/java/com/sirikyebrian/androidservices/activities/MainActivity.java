@@ -1,4 +1,4 @@
-package com.sirikyebrian.androidservices;
+package com.sirikyebrian.androidservices.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -12,6 +12,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.sirikyebrian.androidservices.services.MyIntentService;
+import com.sirikyebrian.androidservices.services.MyStartedService;
+import com.sirikyebrian.androidservices.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +53,10 @@ public class MainActivity extends AppCompatActivity {
         startService(intent);
     }
 
+    public void openMessengerActivity(View view) {
+        startActivity(new Intent(this, MessengerActivity.class));
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
@@ -75,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openBoundService(View view) {
-        startActivity(new Intent(this, SecondActivity.class));
+        startActivity(new Intent(this, BoundActivity.class));
     }
 
     //    To receive the data back from MyIntentService.java using ResultReceiver

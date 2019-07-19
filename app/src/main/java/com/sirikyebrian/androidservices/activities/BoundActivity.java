@@ -1,4 +1,4 @@
-package com.sirikyebrian.androidservices;
+package com.sirikyebrian.androidservices.activities;
 
 import android.content.ComponentName;
 import android.content.Intent;
@@ -10,8 +10,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-public class SecondActivity extends AppCompatActivity {
-    private static final String TAG = "SecondActivity";
+import com.sirikyebrian.androidservices.services.MyBoundService;
+import com.sirikyebrian.androidservices.R;
+
+public class BoundActivity extends AppCompatActivity {
+    private static final String TAG = "BoundActivity";
     private EditText firstNumber;
     private EditText secondNumber;
 
@@ -38,7 +41,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_second);
+        setContentView(R.layout.activity_bound);
         firstNumber = findViewById(R.id.firstNumber);
         secondNumber = findViewById(R.id.secondNumber);
         calculationResultText = findViewById(R.id.calculationResult);
@@ -47,7 +50,7 @@ public class SecondActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Intent intent = new Intent(SecondActivity.this, MyBoundService.class);
+        Intent intent = new Intent(BoundActivity.this, MyBoundService.class);
         bindService(intent, mConnection, BIND_AUTO_CREATE);
     }
 
