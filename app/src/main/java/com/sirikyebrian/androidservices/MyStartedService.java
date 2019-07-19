@@ -14,6 +14,7 @@ import android.widget.Toast;
 public class MyStartedService extends Service {
     public static final String TAG = MyStartedService.class.getSimpleName();
     public static final String EXTRA_SLEEP_TIME = "Sleep Time";
+    public static final String STARTED_SERVICE_RESULT = "startedServiceResult";
 
     @Override
     public void onCreate() {
@@ -44,7 +45,7 @@ public class MyStartedService extends Service {
         Log.d(TAG, "onDestroy, Thread name " + Thread.currentThread().getName());
     }
 
-    private class MyAsyncTask extends AsyncTask<Integer, String, Void> {
+    private class MyAsyncTask extends AsyncTask<Integer, String, String> {
 
         private final String TAG = MyAsyncTask.class.getSimpleName();
 
@@ -55,7 +56,7 @@ public class MyStartedService extends Service {
         }
 
         @Override
-        protected Void doInBackground(Integer... voids) {
+        protected String doInBackground(Integer... voids) {
             Log.i(TAG, "doInBackground, Thread name " + Thread.currentThread().getName());
 
             int sleepTime = voids[0];
@@ -71,7 +72,7 @@ public class MyStartedService extends Service {
                 }
                 ctr++;
             }
-            return null;
+            return "Counter Stopped at " + ctr + " seconds";
         }
 
         @Override
@@ -85,11 +86,15 @@ public class MyStartedService extends Service {
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(String result) {
+            super.onPostExecute(result);
 //            Destroy service from within the service class itself
             stopSelf();
             Log.i(TAG, "onPostExecute, Thread name " + Thread.currentThread().getName());
+
+            Intent intent = new Intent("action.service.to.activity");
+            intent.putExtra(STARTED_SERVICE_RESULT, result);
+            sendBroadcast(intent);
         }
     }
 }

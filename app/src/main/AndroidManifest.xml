@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".SecondActivity"
+            android:label="@string/bound_service"
+            android:parentActivityName=".MainActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +22,13 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyStartedService"/>
-        <service android:name=".MyIntentService"/>
+        <service android:name=".MyStartedService" />
+        <service android:name=".MyIntentService" />
+        <service android:name=".MyBoundService" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

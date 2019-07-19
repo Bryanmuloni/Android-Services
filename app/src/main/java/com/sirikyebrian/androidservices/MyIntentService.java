@@ -2,6 +2,8 @@ package com.sirikyebrian.androidservices;
 
 import android.app.IntentService;
 import android.content.Intent;
+import android.os.Bundle;
+import android.os.ResultReceiver;
 import android.util.Log;
 
 
@@ -12,6 +14,9 @@ import android.util.Log;
 public class MyIntentService extends IntentService {
     public static final String TAG = MyIntentService.class.getSimpleName();
     public static final String EXTRA_SLEEP_TIME = "Sleep Time";
+    public static final String EXTRA_RECEIVER = "receiver";
+    public static final String RESULT_INTENT_SERVICE = "resultIntentService";
+    public static final int RESULT_CODE = 18;
 
     public MyIntentService() {
         super("MyWorkerThread");
@@ -29,6 +34,8 @@ public class MyIntentService extends IntentService {
 
         int sleepTime = intent.getIntExtra(EXTRA_SLEEP_TIME, 1);
 
+        ResultReceiver resultReceiver = intent.getParcelableExtra(EXTRA_RECEIVER);
+
         int ctr = 1;
 
 //            Dummy long operation
@@ -41,6 +48,11 @@ public class MyIntentService extends IntentService {
             }
             ctr++;
         }
+
+        Bundle bundle = new Bundle();
+        bundle.putString(RESULT_INTENT_SERVICE, "Counter stopped at " + ctr + " seconds.");
+
+        resultReceiver.send(RESULT_CODE, bundle);
     }
 
     @Override

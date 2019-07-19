@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Android Services</string>
+    <string name="bound_service">Bound Service</string>
 </resources>
